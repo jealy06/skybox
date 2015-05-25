@@ -1,0 +1,6 @@
+LOAD DATA LOCAL INFILE '2014_NFL_Player_Passing_Stats_National_Football_League_ESPN.csv' 
+INTO TABLE NFLplayerStat
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
