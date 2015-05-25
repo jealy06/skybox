@@ -1,4 +1,4 @@
-package controllers;
+package com.skybox.controllers;
 
 import play.*;
 import play.mvc.*;
