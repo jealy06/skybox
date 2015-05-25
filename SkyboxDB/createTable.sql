@@ -6,8 +6,7 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE NFLplayerStat (
-    playerId INT NOT NULL AUTO_INCREMENT,
-    rank INT NOT NULL,
+    rank INT NOT NULL AUTO_INCREMENT,
     playerName VARCHAR(50) NOT NULL,
     team VARCHAR(50) NOT NULL,
     COMP INT NOT NULL,
@@ -21,5 +20,5 @@ CREATE TABLE NFLplayerStat (
     SACK INT NOT NULL,
     RATE FLOAT NOT NULL,
     YDS_G INT NOT NULL,
-    PRIMARY KEY (playerId)
+    PRIMARY KEY (rank)
 );
