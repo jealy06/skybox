@@ -64,13 +64,35 @@ public class UserDBManager implements DBManager {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 		return userList;
 	}
 
 	@Override
 	public User getItem(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		// Retrieve single user from the Users table
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		User usr = new User();
+		
+		String sql = "select * from Users where userId = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+			
+			// There is always a single entry
+			if (rs.next()) {
+				usr.setUserId(rs.getInt("userId"));
+				usr.setUserName(rs.getString("userName"));
+				usr.setPassword(rs.getString("password"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return usr;
 	}
 
 	@Override

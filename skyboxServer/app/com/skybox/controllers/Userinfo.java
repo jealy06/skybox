@@ -28,9 +28,21 @@ public class Userinfo extends Controller {
 		return ok(Json.toJson(userList));
 	}
 
+	// Retrieving single user from the Database
 	public static Result getItem(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		UserDBManager udbm = new UserDBManager();
+		User usr = null;
+		
+		udbm.connect();
+		usr = udbm.getItem(id);
+		udbm.closeConnection();
+		
+		if (usr.getUserName() == null) {
+			return notFound(Json.toJson("Oops, no matched user"));
+		} else {
+			return ok(Json.toJson(usr));
+		}
+		
 	}
 
 	public static Result createItem() {
