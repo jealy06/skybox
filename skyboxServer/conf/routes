@@ -6,6 +6,7 @@
 GET     /                           com.skybox.controllers.Application.index()
 GET 	/users						com.skybox.controllers.Userinfo.getList()
 GET 	/users/:userId				com.skybox.controllers.Userinfo.getItem(userId: Integer)
+POST    /users						com.skybox.controllers.Userinfo.createItem()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

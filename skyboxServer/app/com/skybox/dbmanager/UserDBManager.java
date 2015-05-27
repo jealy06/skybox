@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.skybox.model.User;
@@ -14,7 +15,7 @@ import com.skybox.model.User;
  * the requests received by Userinfo.java file
  * 
  */
-public class UserDBManager implements DBManager {
+public class UserDBManager extends DBManager<User> {
 	
 	private Connection conn = null;
 	
@@ -96,9 +97,29 @@ public class UserDBManager implements DBManager {
 	}
 
 	@Override
-	public boolean createItem() {
-		// TODO Auto-generated method stub
-		return false;
+	public int createItem(User newUser) {
+		int userId = 0;
+		
+		String sql = "INSERT INTO Users (userId, userName, password)" 
+				+ "VALUES (0, '" + newUser.getUserName() + "', '"
+				+ newUser.getPassword() + "');";
+		
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+			
+			// Retrieve the auto incremented key from the database
+			ResultSet rs = stmt.getGeneratedKeys();
+			if (rs.next()){
+	            userId=rs.getInt(1);
+	        }
+			
+		} catch (SQLException e) {
+			System.out.println("Can't create new User");
+			e.printStackTrace();
+		}
+
+		return userId;
 	}
 
 	@Override

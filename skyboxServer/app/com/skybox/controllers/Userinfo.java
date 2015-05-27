@@ -2,6 +2,7 @@ package com.skybox.controllers;
 
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.skybox.dbmanager.UserDBManager;
 import com.skybox.model.User;
 
@@ -45,9 +46,27 @@ public class Userinfo extends Controller {
 		
 	}
 
+	@BodyParser.Of(BodyParser.Json.class)
 	public static Result createItem() {
-		// TODO Auto-generated method stub
-		return null;
+		UserDBManager udbm = new UserDBManager();
+		int userId;
+		JsonNode json = request().body().asJson();
+		
+		String userName = json.findPath("userName").asText();
+		String password = json.findPath("password").asText();
+		User usr = new User(0, userName, password);
+		
+		udbm.connect();
+		userId = udbm.createItem(usr);
+		udbm.closeConnection();
+		
+		if (userId != 0) {
+			return created(Json.toJson("http://localhost:9000/users/" + userId));
+		} else {
+			// Not sure about the status code here, should be revised later.
+			return badRequest(Json.toJson("Creation failed"));
+		}
+		
 	}
 
 	public static Result updateItem(int id) {

@@ -23,8 +23,8 @@ public abstract class DBManager<O> {
 		return null;
 	}
 	
-	public boolean createItem(O entry) {
-		return false;
+	public int createItem(O entry) {
+		return 0;
 	}
 	
 	public boolean updateItem(int id) {
