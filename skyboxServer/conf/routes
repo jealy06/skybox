@@ -4,11 +4,20 @@
 
 # Home page
 GET     /                           com.skybox.controllers.Application.index()
+
+# CRUD operation on Users table
 GET 	/users						com.skybox.controllers.Userinfo.getList()
 GET 	/users/:userId				com.skybox.controllers.Userinfo.getItem(userId: Integer)
 POST    /users						com.skybox.controllers.Userinfo.createItem()
 PUT 	/users/:userId				com.skybox.controllers.Userinfo.updateItem(userId: Integer)
 DELETE  /users/:userId				com.skybox.controllers.Userinfo.deleteItem(userId: Integer)
+
+# CRUD operation on NFLplayerstats table
+GET 	/nflstats					com.skybox.controllers.NFLplayerstats.getList()
+GET 	/nflstats/:playerId			com.skybox.controllers.NFLplayerstats.getItem(playerId: Integer)
+POST    /nflstats					com.skybox.controllers.NFLplayerstats.createItem()
+PUT 	/nflstats/:playerId			com.skybox.controllers.NFLplayerstats.updateItem(playerId: Integer)
+DELETE  /nflstats/:playerId			com.skybox.controllers.NFLplayerstats.deleteItem(playerId: Integer)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
