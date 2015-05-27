@@ -27,7 +27,7 @@ public abstract class DBManager<O> {
 		return 0;
 	}
 	
-	public boolean updateItem(int id) {
+	public boolean updateItem(O entry) {
 		return false;
 	}
 	

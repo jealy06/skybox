@@ -70,9 +70,36 @@ public class Userinfo extends Controller {
 		
 	}
 
+	@BodyParser.Of(BodyParser.Json.class)
 	public static Result updateItem(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		// Modifying an existing user in the Database
+		// User shouldn't be allowed to change the userId at all.
+		UserDBManager udbm = new UserDBManager();
+		boolean success = false;
+		User checkUser = null;
+		JsonNode json = request().body().asJson();
+		
+		String userName = json.findPath("userName").asText();
+		String password = json.findPath("password").asText();
+		User usr = new User(id, userName, password);
+		
+		udbm.connect();
+		// Check if the user exist first
+		checkUser = udbm.getItem(id);
+		if (checkUser == null) {
+			return notFound(Json.toJson("User not found"));
+		} else {
+			// Update the existing user
+			success = udbm.updateItem(usr);
+		}
+		udbm.closeConnection();
+		
+		if (success) {
+			return noContent();
+		} else {
+			// Not sure about the status code here, should be revised later.
+			return badRequest(Json.toJson("User update failed"));
+		}
 	}
 
 	public static Result deleteItem(int id) {

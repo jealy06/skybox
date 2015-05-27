@@ -125,9 +125,26 @@ public class UserDBManager extends DBManager<User> {
 	}
 
 	@Override
-	public boolean updateItem(int id) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateItem(User entry) {
+		// Modify an existing user in the Users table
+		PreparedStatement ps = null;
+		boolean success = false;
+		
+		String sql = "update Users set userName = ?, password = ? where userId = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, entry.getUserName());
+			ps.setString(2, entry.getPassword());
+			ps.setInt(3, entry.getUserId());
+			ps.executeUpdate();
+			success = true;
+		} catch (SQLException e) {
+			System.out.println("Unable to modify user entry...");
+			e.printStackTrace();
+		}
+		
+		return success;
 	}
 
 	@Override
