@@ -9,30 +9,32 @@ import java.util.ArrayList;
 
 import com.skybox.model.User;
 
+/*
+ * This code is to make database queries according to
+ * the requests received by Userinfo.java file
+ * 
+ */
 public class UserDBManager implements DBManager {
 	
 	private Connection conn = null;
 	
 	@Override
 	public void connect() {
-		try {
-	    	try {
-				Class.forName(JDBC_DRIVER).newInstance();
-			} catch (InstantiationException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			} catch (IllegalAccessException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			} catch (ClassNotFoundException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
+		// Create an instance of connection to MySQL database
+    	try {
+			Class.forName(JDBC_DRIVER).newInstance();
+		} catch (InstantiationException e2) {
+			e2.printStackTrace();
+		} catch (IllegalAccessException e2) {
+			e2.printStackTrace();
+		} catch (ClassNotFoundException e2) {
+			e2.printStackTrace();
+		}
 
+    	try {
 			conn=DriverManager.getConnection(DB_URL);
 			System.out.println("Connect!");
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -40,6 +42,7 @@ public class UserDBManager implements DBManager {
 
 	@Override
 	public ArrayList<User> getList() {
+		// Retrieve list of users from the Users table
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		ArrayList<User> userList = new ArrayList<>();
@@ -59,7 +62,6 @@ public class UserDBManager implements DBManager {
 				userList.add(newUser);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return userList;

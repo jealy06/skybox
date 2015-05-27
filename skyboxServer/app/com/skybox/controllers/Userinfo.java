@@ -10,8 +10,13 @@ import play.libs.Json;
 import play.mvc.*;
 import views.html.*;
 
+/*
+ * This code is for handling Http request to Users table
+ */
+
 public class Userinfo extends Controller {
 
+	// Retrieving List of Users from the Database
 	public static Result getList() {
 		UserDBManager udbm = new UserDBManager();
 		ArrayList<User> userList = new ArrayList<>();

@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+/*
+ * This is the interface of all the database manager, all the DBManager in this package is used
+ * to make sql queries to the database and send back the results if available
+ */
 public interface DBManager {
 
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
