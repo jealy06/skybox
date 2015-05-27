@@ -38,7 +38,7 @@ public class Userinfo extends Controller {
 		usr = udbm.getItem(id);
 		udbm.closeConnection();
 		
-		if (usr.getUserName() == null) {
+		if (usr == null) {
 			return notFound(Json.toJson("Oops, no matched user"));
 		} else {
 			return ok(Json.toJson(usr));
@@ -48,6 +48,7 @@ public class Userinfo extends Controller {
 
 	@BodyParser.Of(BodyParser.Json.class)
 	public static Result createItem() {
+		// Inserting new user into the Database
 		UserDBManager udbm = new UserDBManager();
 		int userId;
 		JsonNode json = request().body().asJson();
@@ -64,7 +65,7 @@ public class Userinfo extends Controller {
 			return created(Json.toJson("http://localhost:9000/users/" + userId));
 		} else {
 			// Not sure about the status code here, should be revised later.
-			return badRequest(Json.toJson("Creation failed"));
+			return badRequest(Json.toJson("User creation failed"));
 		}
 		
 	}
@@ -75,7 +76,26 @@ public class Userinfo extends Controller {
 	}
 
 	public static Result deleteItem(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		// Deleting user from the Database
+		UserDBManager udbm = new UserDBManager();
+		User usr = null;
+		boolean success = false;
+		
+		udbm.connect();
+		usr = udbm.getItem(id);
+		
+		if (usr == null) {
+			return notFound(Json.toJson("User not found"));
+		} else {
+			success = udbm.deleteItem(id);
+		}
+		udbm.closeConnection();
+		
+		if (success) {
+			return noContent();
+		} else {
+			return badRequest(Json.toJson("User deletion failed"));
+		}
+		
 	}
 }

@@ -74,7 +74,7 @@ public class UserDBManager extends DBManager<User> {
 		// Retrieve single user from the Users table
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		User usr = new User();
+		User usr = null;
 		
 		String sql = "select * from Users where userId = ?";
 		
@@ -85,9 +85,10 @@ public class UserDBManager extends DBManager<User> {
 			
 			// There is always a single entry
 			if (rs.next()) {
-				usr.setUserId(rs.getInt("userId"));
-				usr.setUserName(rs.getString("userName"));
-				usr.setPassword(rs.getString("password"));
+				int userId = rs.getInt("userId");
+				String userName = rs.getString("userName");
+				String password = rs.getString("password");
+				usr = new User(userId, userName, password);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -98,6 +99,7 @@ public class UserDBManager extends DBManager<User> {
 
 	@Override
 	public int createItem(User newUser) {
+		// Insert a new user into the Users table
 		int userId = 0;
 		
 		String sql = "INSERT INTO Users (userId, userName, password)" 
@@ -130,8 +132,22 @@ public class UserDBManager extends DBManager<User> {
 
 	@Override
 	public boolean deleteItem(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		// Delete a user from the Users table
+		PreparedStatement ps = null;
+		boolean success = false;
+		
+		String sql = "delete from Users where userId = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.executeUpdate();
+			success = true;
+		} catch (SQLException e) {
+			System.out.println("Unable to delete entry from User table");
+			e.printStackTrace();
+		}
+		return success;
 	}
 
 	@Override
