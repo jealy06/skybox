@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.skybox.dbmanager.UserDBManager;
+import com.skybox.model.NFLplayerstats;
 import com.skybox.model.User;
 
 import play.*;
@@ -54,9 +55,7 @@ public class Userinfo extends Controller {
 		int userId;
 		JsonNode json = request().body().asJson();
 		
-		String userName = json.findPath("userName").asText();
-		String password = json.findPath("password").asText();
-		User usr = new User(0, userName, password);
+		User usr = parseUser(0, json);
 		
 		udbm.connect();
 		userId = udbm.createItem(usr);
@@ -80,9 +79,7 @@ public class Userinfo extends Controller {
 		User checkUser = null;
 		JsonNode json = request().body().asJson();
 		
-		String userName = json.findPath("userName").asText();
-		String password = json.findPath("password").asText();
-		User usr = new User(id, userName, password);
+		User usr = parseUser(id, json);
 		
 		udbm.connect();
 		// Check if the user exist first
@@ -101,6 +98,23 @@ public class Userinfo extends Controller {
 			// Not sure about the status code here, should be revised later.
 			return badRequest(Json.toJson("User update failed"));
 		}
+	}
+	
+	private static User parseUser(int id, JsonNode json) {
+		String userName = json.findPath("userName").asText();
+		String password = json.findPath("password").asText();
+		
+		/**
+		 * userId value could be anything here
+		 * Since userId field is set to auto_increment, it will not take any value
+		 * from outside
+		 * 
+		 * userId only matters when user trying to update an existing user
+		 */
+		User usr = new User(id, userName, password);
+		System.out.println(usr.toString());
+		
+		return usr;
 	}
 
 	public static Result deleteItem(int id) {
