@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /*
  * This is the interface of all the database manager, all the DBManager in this package is used
@@ -37,7 +38,7 @@ public abstract class DBManager<O> {
 		}
 	}
 	
-	public ArrayList<? extends Object> getList() {
+	public List<? extends Object> getList() {
 		return null;
 	}
 	
@@ -59,7 +60,9 @@ public abstract class DBManager<O> {
 	
 	public void closeConnection() {
 		try {
-			conn.close();
+			if (conn != null) {
+				conn.close();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

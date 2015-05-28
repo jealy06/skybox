@@ -1,6 +1,7 @@
 package com.skybox.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.skybox.dbmanager.UserDBManager;
@@ -20,7 +21,7 @@ public class Userinfo extends Controller {
 	// Retrieving List of Users from the Database
 	public static Result getList() {
 		UserDBManager udbm = new UserDBManager();
-		ArrayList<User> userList = new ArrayList<>();
+		List<User> userList = new ArrayList<User>();
 		
 		udbm.connect();
 		userList = udbm.getList();

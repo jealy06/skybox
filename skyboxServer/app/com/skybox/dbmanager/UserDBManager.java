@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.skybox.model.User;
 
@@ -16,11 +17,11 @@ import com.skybox.model.User;
 public class UserDBManager extends DBManager<User> {
 
 	@Override
-	public ArrayList<User> getList() {
+	public List<User> getList() {
 		// Retrieve list of users from the Users table
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		ArrayList<User> userList = new ArrayList<>();
+		List<User> userList = new ArrayList<User>();
 		
 		String sql = "select * from Users";
 		
