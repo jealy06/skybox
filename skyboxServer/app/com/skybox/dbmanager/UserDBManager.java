@@ -1,7 +1,5 @@
 package com.skybox.dbmanager;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,6 +37,7 @@ public class UserDBManager extends DBManager<User> {
 				userList.add(newUser);
 			}
 		} catch (SQLException e) {
+			System.out.println("Unable to retrieve the list of users...");
 			e.printStackTrace();
 		}
 		
@@ -67,6 +66,7 @@ public class UserDBManager extends DBManager<User> {
 				usr = new User(userId, userName, password);
 			}
 		} catch (SQLException e) {
+			System.out.println("Unable to retrieve the target user...");
 			e.printStackTrace();
 		}
 		
@@ -93,7 +93,7 @@ public class UserDBManager extends DBManager<User> {
 	        }
 			
 		} catch (SQLException e) {
-			System.out.println("Can't create new User");
+			System.out.println("Unable create new User");
 			e.printStackTrace();
 		}
 
