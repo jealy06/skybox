@@ -5,13 +5,10 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.skybox.dbmanager.UserDBManager;
-import com.skybox.model.NFLplayerstats;
 import com.skybox.model.User;
 
-import play.*;
 import play.libs.Json;
 import play.mvc.*;
-import views.html.*;
 
 /*
  * This code is for handling Http request to Users table

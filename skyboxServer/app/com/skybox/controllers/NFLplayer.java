@@ -5,9 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.skybox.dbmanager.NFLplayerstatsDBManager;
-import com.skybox.dbmanager.UserDBManager;
 import com.skybox.model.NFLplayerstats;
-import com.skybox.model.User;
 
 import play.libs.Json;
 import play.mvc.BodyParser;
