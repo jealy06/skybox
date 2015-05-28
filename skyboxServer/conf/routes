@@ -13,11 +13,11 @@ PUT 	/users/:userId				com.skybox.controllers.Userinfo.updateItem(userId: Intege
 DELETE  /users/:userId				com.skybox.controllers.Userinfo.deleteItem(userId: Integer)
 
 # CRUD operation on NFLplayerstats table
-GET 	/nflstats					com.skybox.controllers.NFLplayerstats.getList()
-GET 	/nflstats/:playerId			com.skybox.controllers.NFLplayerstats.getItem(playerId: Integer)
-POST    /nflstats					com.skybox.controllers.NFLplayerstats.createItem()
-PUT 	/nflstats/:playerId			com.skybox.controllers.NFLplayerstats.updateItem(playerId: Integer)
-DELETE  /nflstats/:playerId			com.skybox.controllers.NFLplayerstats.deleteItem(playerId: Integer)
+GET 	/nflstats					com.skybox.controllers.NFLplayer.getList()
+GET 	/nflstats/:playerId			com.skybox.controllers.NFLplayer.getItem(playerId: Integer)
+#POST    /nflstats					com.skybox.controllers.NFLplayer.createItem()
+#PUT 	/nflstats/:playerId			com.skybox.controllers.NFLplayer.updateItem(playerId: Integer)
+#DELETE  /nflstats/:playerId			com.skybox.controllers.NFLplayer.deleteItem(playerId: Integer)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

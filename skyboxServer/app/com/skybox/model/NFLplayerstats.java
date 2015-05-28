@@ -16,9 +16,10 @@ public class NFLplayerstats {
 	private float RATE;
 	private int YDS_G;
     
-	public NFLplayerstats(String playerName, String team, int COMP, int ATT,
+	public NFLplayerstats(int rank, String playerName, String team, int COMP, int ATT,
 			float PCT, int YDS, float YDS_A, int lONGP, int TD, int INTT,
 			int SACK, float RATE, int YDS_G) {
+		this.rank = rank;
 		this.playerName = playerName;
 		this.team = team;
 		this.COMP = COMP;
