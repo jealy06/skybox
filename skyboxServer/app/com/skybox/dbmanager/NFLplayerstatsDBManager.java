@@ -95,7 +95,7 @@ public class NFLplayerstatsDBManager extends DBManager<NFLplayerstats> {
 
 	@Override
 	public int createItem(NFLplayerstats entry) {
-		// Insert a new user into the Users table
+		// Insert a new NFL player stat into the NFLplayerStat table
 		int rank = 0;
 		
 		String sql = "INSERT INTO NFLplayerStat (rank, playerName, team, COMP, ATT, PCT,"
@@ -126,13 +126,43 @@ public class NFLplayerstatsDBManager extends DBManager<NFLplayerstats> {
 
 	@Override
 	public boolean updateItem(NFLplayerstats entry) {
-		// TODO Auto-generated method stub
-		return super.updateItem(entry);
+		// Modify an existing NFL player stat in the NFLplayerStat table
+		PreparedStatement ps = null;
+		boolean success = false;
+		
+		String sql = "update NFLplayerStat set playerName = ?, team = ?, COMP = ?, ATT = ?, "
+				+ "PCT = ?, YDS = ?, YDS_A = ?, LONGP = ?, TD = ?, INTT = ?, SACK = ?, "
+				+ "RATE = ?, YDS_G = ? where rank = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, entry.getPlayerName());
+			ps.setString(2, entry.getTeam());
+			ps.setInt(3, entry.getComp());
+			ps.setInt(4, entry.getAtt());
+			ps.setFloat(5, entry.getPct());
+			ps.setInt(6, entry.getYds());
+			ps.setFloat(7, entry.getYds_a());
+			ps.setInt(8, entry.getLongp());
+			ps.setInt(9, entry.getTd());
+			ps.setInt(10, entry.getIntt());
+			ps.setInt(11, entry.getSack());
+			ps.setFloat(12, entry.getRate());
+			ps.setInt(13, entry.getYds_g());
+			ps.setInt(14, entry.getRank());
+			ps.executeUpdate();
+			success = true;
+		} catch (SQLException e) {
+			System.out.println("Unable to modify NFL player stat entry...");
+			e.printStackTrace();
+		}
+		
+		return success;
 	}
 
 	@Override
 	public boolean deleteItem(int id) {
-		// Delete a user from the Users table
+		// Delete a NFL player stat from the NFLplayerStat table
 		PreparedStatement ps = null;
 		boolean success = false;
 		
