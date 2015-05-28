@@ -15,6 +15,15 @@ public class User {
 		this.password = password;
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		// For debugging purpose
+		return "User [userId=" + userId + ", userName=" + userName
+				+ ", password=" + password + "]";
+	}
+
 	public int getUserId() {
 		return userId;
 	}
