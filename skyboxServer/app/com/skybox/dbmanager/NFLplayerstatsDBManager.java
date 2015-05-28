@@ -27,20 +27,20 @@ public class NFLplayerstatsDBManager extends DBManager<NFLplayerstats> {
 				int rank = rs.getInt("rank");
 				String playerName = rs.getString("playerName");
 				String team = rs.getString("team");
-				int COMP = rs.getInt("COMP");
-				int ATT  = rs.getInt("ATT");
-				float PCT = rs.getFloat("PCT");
-				int YDS = rs.getInt("YDS");
-				float YDS_A = rs.getFloat("YDS_A");
-				int LONGP = rs.getInt("LONGP");
-				int TD = rs.getInt("TD");
-				int INTT = rs.getInt("INTT");
-				int SACK = rs.getInt("SACK");
-				float RATE = rs.getFloat("RATE");
-				int YDS_G = rs.getInt("YDS_G");
+				int comp = rs.getInt("COMP");
+				int att  = rs.getInt("ATT");
+				float pct = rs.getFloat("PCT");
+				int yds = rs.getInt("YDS");
+				float yds_a = rs.getFloat("YDS_A");
+				int longp = rs.getInt("LONGP");
+				int td = rs.getInt("TD");
+				int intt = rs.getInt("INTT");
+				int sack = rs.getInt("SACK");
+				float rate = rs.getFloat("RATE");
+				int yds_g = rs.getInt("YDS_G");
 				
-				NFLplayerstats np = new NFLplayerstats(rank, playerName, team, COMP, 
-						ATT, PCT, YDS, YDS_A, LONGP, TD, INTT, SACK, RATE, YDS_G);
+				NFLplayerstats np = new NFLplayerstats(rank, playerName, team, comp, 
+						att, pct, yds, yds_a, longp, td, intt, sack, rate, yds_g);
 				playerList.add(np);
 			}
 		} catch (SQLException e) {
@@ -69,20 +69,20 @@ public class NFLplayerstatsDBManager extends DBManager<NFLplayerstats> {
 				int rank = rs.getInt("rank");
 				String playerName = rs.getString("playerName");
 				String team = rs.getString("team");
-				int COMP = rs.getInt("COMP");
-				int ATT  = rs.getInt("ATT");
-				float PCT = rs.getFloat("PCT");
-				int YDS = rs.getInt("YDS");
-				float YDS_A = rs.getFloat("YDS_A");
-				int LONGP = rs.getInt("LONGP");
-				int TD = rs.getInt("TD");
-				int INTT = rs.getInt("INTT");
-				int SACK = rs.getInt("SACK");
-				float RATE = rs.getFloat("RATE");
-				int YDS_G = rs.getInt("YDS_G");
+				int comp = rs.getInt("COMP");
+				int att  = rs.getInt("ATT");
+				float pct = rs.getFloat("PCT");
+				int yds = rs.getInt("YDS");
+				float yds_a = rs.getFloat("YDS_A");
+				int longp = rs.getInt("LONGP");
+				int td = rs.getInt("TD");
+				int intt = rs.getInt("INTT");
+				int sack = rs.getInt("SACK");
+				float rate = rs.getFloat("RATE");
+				int yds_g = rs.getInt("YDS_G");
 				
-				np = new NFLplayerstats(rank, playerName, team, COMP, 
-						ATT, PCT, YDS, YDS_A, LONGP, TD, INTT, SACK, RATE, YDS_G);
+				np = new NFLplayerstats(rank, playerName, team, comp, 
+						att, pct, yds, yds_a, longp, td, intt, sack, rate, yds_g);
 			}
 		} catch (SQLException e) {
 			System.out.println("Unable to retrieve the list of NFL player stats...");
