@@ -4,18 +4,12 @@ import java.util.ArrayList;
 
 import com.skybox.model.NFLplayerstats;
 
-public class NFLplayerstatsDBManager extends DBManager<NFLplayerstats>{
+public class NFLplayerstatsDBManager extends DBManager<NFLplayerstats> {
 
 	@Override
-	public void connect() {
+	public ArrayList<NFLplayerstats> getList() {
 		// TODO Auto-generated method stub
-		super.connect();
-	}
-
-	@Override
-	public ArrayList<? extends Object> getList() {
-		// TODO Auto-generated method stub
-		return super.getList();
+		return null;
 	}
 
 	@Override
@@ -41,11 +35,4 @@ public class NFLplayerstatsDBManager extends DBManager<NFLplayerstats>{
 		// TODO Auto-generated method stub
 		return super.deleteItem(id);
 	}
-
-	@Override
-	public void closeConnection() {
-		// TODO Auto-generated method stub
-		super.closeConnection();
-	}
-
 }

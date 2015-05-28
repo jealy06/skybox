@@ -16,30 +16,6 @@ import com.skybox.model.User;
  * 
  */
 public class UserDBManager extends DBManager<User> {
-	
-	private Connection conn = null;
-	
-	@Override
-	public void connect() {
-		// Create an instance of connection to MySQL database
-    	try {
-			Class.forName(JDBC_DRIVER).newInstance();
-		} catch (InstantiationException e2) {
-			e2.printStackTrace();
-		} catch (IllegalAccessException e2) {
-			e2.printStackTrace();
-		} catch (ClassNotFoundException e2) {
-			e2.printStackTrace();
-		}
-
-    	try {
-			conn=DriverManager.getConnection(DB_URL);
-			System.out.println("Connect!");
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-		
-	}
 
 	@Override
 	public ArrayList<User> getList() {
@@ -166,15 +142,4 @@ public class UserDBManager extends DBManager<User> {
 		}
 		return success;
 	}
-
-	@Override
-	public void closeConnection() {
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
 }
