@@ -15,7 +15,7 @@ DELETE  /users/:userId				com.skybox.controllers.Userinfo.deleteItem(userId: Int
 # CRUD operation on NFLplayerstats table
 GET 	/nflstats					com.skybox.controllers.NFLplayer.getList()
 GET 	/nflstats/:playerId			com.skybox.controllers.NFLplayer.getItem(playerId: Integer)
-#POST    /nflstats					com.skybox.controllers.NFLplayer.createItem()
+POST    /nflstats					com.skybox.controllers.NFLplayer.createItem()
 #PUT 	/nflstats/:playerId			com.skybox.controllers.NFLplayer.updateItem(playerId: Integer)
 #DELETE  /nflstats/:playerId			com.skybox.controllers.NFLplayer.deleteItem(playerId: Integer)
 

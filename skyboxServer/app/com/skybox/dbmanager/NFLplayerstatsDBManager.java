@@ -3,6 +3,7 @@ package com.skybox.dbmanager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,8 +95,33 @@ public class NFLplayerstatsDBManager extends DBManager<NFLplayerstats> {
 
 	@Override
 	public int createItem(NFLplayerstats entry) {
-		// TODO Auto-generated method stub
-		return super.createItem(entry);
+		// Insert a new user into the Users table
+		int rank = 0;
+		
+		String sql = "INSERT INTO NFLplayerStat (rank, playerName, team, COMP, ATT, PCT,"
+				+ " YDS, YDS_A, LONGP, TD, INTT, SACK, RATE, YDS_G)" 
+				+ "VALUES (0, '" + entry.getPlayerName() + "', '"
+				+ entry.getTeam() + "', " + entry.getComp() + ", " + entry.getAtt() + ", "
+				+ entry.getPct() + ", " + entry.getYds() + ", " + entry.getYds_a() + ", "
+				+ entry.getLongp() + ", " + entry.getTd() + ", " + entry.getIntt() + ", "
+				+ entry.getSack() + ", " + entry.getRate() + ", " + entry.getYds_g() + ");";
+		
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+			
+			// Retrieve the auto incremented key from the database
+			ResultSet rs = stmt.getGeneratedKeys();
+			if (rs.next()) {
+	            rank=rs.getInt(1);
+	        }
+			
+		} catch (SQLException e) {
+			System.out.println("Unable insert new NFL player stats");
+			e.printStackTrace();
+		}
+
+		return rank;
 	}
 
 	@Override
