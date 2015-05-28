@@ -132,7 +132,21 @@ public class NFLplayerstatsDBManager extends DBManager<NFLplayerstats> {
 
 	@Override
 	public boolean deleteItem(int id) {
-		// TODO Auto-generated method stub
-		return super.deleteItem(id);
+		// Delete a user from the Users table
+		PreparedStatement ps = null;
+		boolean success = false;
+		
+		String sql = "delete from NFLplayerStat where rank = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.executeUpdate();
+			success = true;
+		} catch (SQLException e) {
+			System.out.println("Unable to delete entry from NFLplayerStat table");
+			e.printStackTrace();
+		}
+		return success;
 	}
 }

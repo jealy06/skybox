@@ -47,7 +47,7 @@ public class NFLplayer extends Controller {
 	
 	@BodyParser.Of(BodyParser.Json.class)
 	public static Result createItem() {
-		// Inserting new user into the Database
+		// Inserting new NFL player stat into the Database
 		NFLplayerstatsDBManager npdbm = new NFLplayerstatsDBManager();
 		int rank = 0;
 		JsonNode json = request().body().asJson();
@@ -79,6 +79,31 @@ public class NFLplayer extends Controller {
 		} else {
 			// Not sure about the status code here, should be revised later.
 			return badRequest(Json.toJson("NFL player stats insertion failed"));
+		}
+		
+	}
+	
+	
+	public static Result deleteItem(int id) {
+		// Deleting NFL player stat from the Database
+		NFLplayerstatsDBManager npdbm = new NFLplayerstatsDBManager();
+		NFLplayerstats np = null;
+		boolean success = false;
+		
+		npdbm.connect();
+		np = npdbm.getItem(id);
+		
+		if (np == null) {
+			return notFound(Json.toJson("NFL player not found"));
+		} else {
+			success = npdbm.deleteItem(id);
+		}
+		npdbm.closeConnection();
+		
+		if (success) {
+			return noContent();
+		} else {
+			return badRequest(Json.toJson("User deletion failed"));
 		}
 		
 	}
