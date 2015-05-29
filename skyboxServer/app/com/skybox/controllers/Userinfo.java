@@ -3,12 +3,14 @@ package com.skybox.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import play.libs.Json;
+import play.mvc.BodyParser;
+import play.mvc.Controller;
+import play.mvc.Result;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.skybox.dbmanager.UserDBManager;
 import com.skybox.model.User;
-
-import play.libs.Json;
-import play.mvc.*;
 
 /*
  * This code is for handling Http request to Users table

@@ -3,15 +3,15 @@ package com.skybox.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.google.gson.Gson;
-import com.skybox.dbmanager.NFLplayerstatsDBManager;
-import com.skybox.model.NFLplayerstats;
-
 import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.google.gson.Gson;
+import com.skybox.dbmanager.NFLplayerstatsDBManager;
+import com.skybox.model.NFLplayerstats;
 
 public class NFLplayer extends Controller {
 
