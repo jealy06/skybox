@@ -9,11 +9,22 @@ import java.util.List;
 
 import com.skybox.model.NFLplayerstats;
 
+/**
+ * 
+ * @author jialunliu
+ *
+ * This code is to make database queries according to the requests received by 
+ * NFLplayer.java file
+ */
 public class NFLplayerstatsDBManager extends DBManager<NFLplayerstats> {
 
+	/* (non-Javadoc)
+	 * @see com.skybox.dbmanager.DBManager#getList()
+	 * 
+	 * Retrieve list of NFLplayerstats from the NFLplayerStat table
+	 */
 	@Override
 	public List<NFLplayerstats> getList() {
-		// Retrieve list of NFLplayerstats from the NFLplayerStat table
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<NFLplayerstats> playerList = new ArrayList<NFLplayerstats>();
@@ -36,9 +47,13 @@ public class NFLplayerstatsDBManager extends DBManager<NFLplayerstats> {
 		return playerList;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.skybox.dbmanager.DBManager#getItem(int)
+	 * 
+	 * Retrieve list of NFLplayerstats from the NFLplayerStat table
+	 */
 	@Override
 	public NFLplayerstats getItem(int id) {
-		// Retrieve list of NFLplayerstats from the NFLplayerStat table
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		NFLplayerstats np = null;
@@ -61,6 +76,14 @@ public class NFLplayerstatsDBManager extends DBManager<NFLplayerstats> {
 		return np;
 	}
 	
+	/**
+	 * @param rs
+	 * @return NFLplayerstats Object
+	 * @throws SQLException
+	 * 
+	 * Parse the ResultSet received from the database, and parse it to
+	 * be a NFLplayerstats object.
+	 */
 	private NFLplayerstats parseObject(ResultSet rs) throws SQLException {
 		int rank = rs.getInt("rank");
 		String playerName = rs.getString("playerName");
@@ -83,9 +106,15 @@ public class NFLplayerstatsDBManager extends DBManager<NFLplayerstats> {
 		return np;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.skybox.dbmanager.DBManager#createItem(java.lang.Object)
+	 * 
+	 * Insert a new NFL player stat into the NFLplayerStat table and send 
+	 * back the rank(id) of the new inserted row.
+	 */
 	@Override
 	public int createItem(NFLplayerstats entry) {
-		// Insert a new NFL player stat into the NFLplayerStat table
+		// 
 		int rank = 0;
 		
 		String sql = "INSERT INTO NFLplayerStat (rank, playerName, team, COMP, ATT, PCT,"
@@ -114,9 +143,13 @@ public class NFLplayerstatsDBManager extends DBManager<NFLplayerstats> {
 		return rank;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.skybox.dbmanager.DBManager#updateItem(java.lang.Object)
+	 * 
+	 * Modify an existing NFL player stat in the NFLplayerStat table
+	 */
 	@Override
 	public boolean updateItem(NFLplayerstats entry) {
-		// Modify an existing NFL player stat in the NFLplayerStat table
 		PreparedStatement ps = null;
 		boolean success = false;
 		
@@ -149,9 +182,13 @@ public class NFLplayerstatsDBManager extends DBManager<NFLplayerstats> {
 		return success;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.skybox.dbmanager.DBManager#deleteItem(int)
+	 * 
+	 * Delete a NFL player stat from the NFLplayerStat table
+	 */
 	@Override
 	public boolean deleteItem(int id) {
-		// Delete a NFL player stat from the NFLplayerStat table
 		PreparedStatement ps = null;
 		boolean success = false;
 		

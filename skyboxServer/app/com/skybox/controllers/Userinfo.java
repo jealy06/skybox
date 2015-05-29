@@ -12,13 +12,20 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.skybox.dbmanager.UserDBManager;
 import com.skybox.model.User;
 
-/*
+/**
+ * 
+ * @author jialunliu
+ *
  * This code is for handling Http request to Users table
  */
-
 public class Userinfo extends Controller {
 
-	// Retrieving List of Users from the Database
+	/**
+	 * @return Json User list, 200(success)
+	 * 
+	 * Call the getList() in the UserDBManager and retrieve List 
+	 * of Users from the Database
+	 */
 	public static Result getList() {
 		UserDBManager udbm = new UserDBManager();
 		List<User> userList = new ArrayList<User>();
@@ -31,6 +38,13 @@ public class Userinfo extends Controller {
 	}
 
 	// Retrieving single user from the Database
+	/**
+	 * @param id
+	 * @return Json User, 200(success)/404(Not Found)
+	 * 
+	 * Call the getItem() in the UserDBManager and retrieve single 
+	 * user from the Database
+	 */
 	public static Result getItem(int id) {
 		UserDBManager udbm = new UserDBManager();
 		User usr = null;
@@ -45,9 +59,14 @@ public class Userinfo extends Controller {
 		return ok(Json.toJson(usr));
 	}
 
+	/**
+	 * @return url of the inserted user, 201(Created)/400(Bad Request)
+	 * 
+	 * Inserting new user into the Database and return the url of
+	 * the inserted user if succeeds
+	 */
 	@BodyParser.Of(BodyParser.Json.class)
 	public static Result createItem() {
-		// Inserting new user into the Database
 		UserDBManager udbm = new UserDBManager();
 		int userId;
 		JsonNode json = request().body().asJson();
@@ -65,10 +84,15 @@ public class Userinfo extends Controller {
 		return badRequest(Json.toJson("User creation failed"));
 	}
 
+	/**
+	 * @param id
+	 * @return 204(No Content)/404(Not Found)/400(Bad Request)
+	 * 
+	 * Modifying an existing user in the Database
+	 * User shouldn't be allowed to change the userId at all.
+	 */
 	@BodyParser.Of(BodyParser.Json.class)
 	public static Result updateItem(int id) {
-		// Modifying an existing user in the Database
-		// User shouldn't be allowed to change the userId at all.
 		UserDBManager udbm = new UserDBManager();
 		boolean success = false;
 		User checkUser = null;
@@ -94,6 +118,14 @@ public class Userinfo extends Controller {
 		return badRequest(Json.toJson("User update failed"));
 	}
 	
+	/**
+	 * @param id
+	 * @param json
+	 * @return User Object
+	 * 
+	 * Parse the received json object from the PUT request into the
+	 * User object
+	 */
 	private static User parseUser(int id, JsonNode json) {
 		String userName = json.findPath("userName").asText();
 		String password = json.findPath("password").asText();
@@ -111,8 +143,13 @@ public class Userinfo extends Controller {
 		return usr;
 	}
 
+	/**
+	 * @param id
+	 * @return 204(No Content)/404(Not Found)/400(Bad Request)
+	 * 
+	 * Deleting user from the Database
+	 */
 	public static Result deleteItem(int id) {
-		// Deleting user from the Database
 		UserDBManager udbm = new UserDBManager();
 		User usr = null;
 		boolean success = false;

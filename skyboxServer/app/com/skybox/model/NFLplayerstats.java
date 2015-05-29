@@ -1,5 +1,17 @@
 package com.skybox.model;
 
+/**
+ * 
+ * @author jialunliu
+ * 
+ * This class uses inner class PlayerInfo and PlayerStats to group related
+ * instance variables, so that when send the response back to the end user,
+ * results are displayed in a more organized format.
+ * 
+ * The getter and setters are written in the way that other class could access
+ * the instance variables of NFLplayerstats as if it doesn't have any inner
+ * classes.
+ */
 public class NFLplayerstats {
 
 	private int rank;
@@ -65,8 +77,6 @@ public class NFLplayerstats {
 				+ ", td=" + getTd() + ", intt=" + getIntt() + ", sack=" + getSack() + ", rate=" 
 				+ getSack() + ", yds_g=" + getYds_g() + "]";
 	}
-	
-	
 	
 	public int getRank() {
 		return rank;

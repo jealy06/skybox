@@ -13,9 +13,20 @@ import com.google.gson.Gson;
 import com.skybox.dbmanager.NFLplayerstatsDBManager;
 import com.skybox.model.NFLplayerstats;
 
+/**
+ * 
+ * @author jialunliu
+ *
+ * This code is for handling Http request to NFLplayerStat table
+ */
 public class NFLplayer extends Controller {
 
-	// Retrieving List of NFLplayerstats from the Database
+	/**
+	 * @return Json NFLplayerstats list, 200(success)
+	 * 
+	 * Call the getList() in the NFLplayerstatsDBManager and retrieve List 
+	 * of NFLplayerstats from the Database
+	 */
 	public static Result getList() {
 		NFLplayerstatsDBManager npdbm = new NFLplayerstatsDBManager();
 		List<NFLplayerstats> playerList = new ArrayList<NFLplayerstats>();
@@ -28,7 +39,12 @@ public class NFLplayer extends Controller {
 		return ok(gson.toJson(playerList));
 	}
 
-	// Retrieving single NFLplayerstats from the Database
+	/**
+	 * @return Json NFLplayerstats Object, 200(success)/404(Not Found)
+	 * 
+	 * Call the getItem() in the NFLplayerstatsDBManager and retrieve the 
+	 * desired NFLplayerstats entry from the Database
+	 */
 	public static Result getItem(int id) {
 		NFLplayerstatsDBManager npdbm = new NFLplayerstatsDBManager();
 		NFLplayerstats np = null;
@@ -44,9 +60,15 @@ public class NFLplayer extends Controller {
 		return ok(gson.toJson(np));
 	}
 	
+	/**
+	 * @return url of the inserted NFL player stats, 
+	 * 		   201(Created)/400(Bad Request)
+	 * 
+	 * Inserting new NFL player stats into the Database and return the url of
+	 * the inserted NFL player stats if succeeds
+	 */
 	@BodyParser.Of(BodyParser.Json.class)
 	public static Result createItem() {
-		// Inserting new NFL player stat into the Database
 		NFLplayerstatsDBManager npdbm = new NFLplayerstatsDBManager();
 		int rank = 0;
 		JsonNode json = request().body().asJson();
@@ -64,12 +86,15 @@ public class NFLplayer extends Controller {
 		return badRequest(Json.toJson("NFL player stats insertion failed"));	
 	}
 	
+	/**
+	 * @param id
+	 * @return 204(No Content)/404(Not Found)/400(Bad Request)
+	 * 
+	 * Modifying an existing NFL player stat in the Database
+	 * User shouldn't be allowed to change the rank(id) at all.
+	 */
 	@BodyParser.Of(BodyParser.Json.class)
 	public static Result updateItem(int id) {
-		/**
-		 * Modifying an existing NFL player stat in the Database
-		 * User shouldn't be allowed to change the rank(id) at all.
-		 */
 		NFLplayerstatsDBManager npdbm = new NFLplayerstatsDBManager();
 		boolean success = false;
 		NFLplayerstats checkPlayer = null;
@@ -96,7 +121,14 @@ public class NFLplayer extends Controller {
 		return badRequest(Json.toJson("NFL player stat update failed"));
 	}
 	
-	
+	/**
+	 * @param id
+	 * @param json
+	 * @return NFLplayerstats Object
+	 * 
+	 * Parse the received json object from the PUT request into the
+	 * NFLplayerstats object
+	 */
 	private static NFLplayerstats parseNFLplayer(int id, JsonNode json) {
 		String playerName = json.findPath("playerName").asText();
 		String team = json.findPath("team").asText();
@@ -126,8 +158,13 @@ public class NFLplayer extends Controller {
 		return np;
 	}
 	
+	/**
+	 * @param id
+	 * @return 204(No Content)/404(Not Found)/400(Bad Request)
+	 * 
+	 * Deleting NFL player stats from the Database
+	 */
 	public static Result deleteItem(int id) {
-		// Deleting NFL player stat from the Database
 		NFLplayerstatsDBManager npdbm = new NFLplayerstatsDBManager();
 		NFLplayerstats np = null;
 		boolean success = false;

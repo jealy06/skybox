@@ -9,16 +9,22 @@ import java.util.List;
 
 import com.skybox.model.User;
 
-/*
- * This code is to make database queries according to
- * the requests received by Userinfo.java file
+/**
  * 
+ * @author jialunliu
+ *
+ * This code is to make database queries according to the requests received by 
+ * Userinfo.java file
  */
 public class UserDBManager extends DBManager<User> {
 
+	/* (non-Javadoc)
+	 * @see com.skybox.dbmanager.DBManager#getList()
+	 * 
+	 * Retrieve list of users from the Users table
+	 */
 	@Override
 	public List<User> getList() {
-		// Retrieve list of users from the Users table
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<User> userList = new ArrayList<User>();
@@ -41,9 +47,13 @@ public class UserDBManager extends DBManager<User> {
 		return userList;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.skybox.dbmanager.DBManager#getItem(int)
+	 * 
+	 * Retrieve single user from the Users table
+	 */
 	@Override
 	public User getItem(int id) {
-		// Retrieve single user from the Users table
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		User usr = null;
@@ -67,6 +77,14 @@ public class UserDBManager extends DBManager<User> {
 		return usr;
 	}
 	
+	/**
+	 * @param rs
+	 * @return User Object
+	 * @throws SQLException
+	 * 
+	 * Parse the ResultSet received from the database, and parse it to
+	 * be a User object.
+	 */
 	private User parseUser(ResultSet rs) throws SQLException {
 		int userId = rs.getInt("userId");
 		String userName = rs.getString("userName");
@@ -76,9 +94,14 @@ public class UserDBManager extends DBManager<User> {
 		return usr;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.skybox.dbmanager.DBManager#createItem(java.lang.Object)
+	 * 
+	 * Insert a new user into the Users table and send back the userId of 
+	 * the new inserted row.
+	 */
 	@Override
 	public int createItem(User newUser) {
-		// Insert a new user into the Users table
 		int userId = 0;
 		
 		String sql = "INSERT INTO Users (userId, userName, password)" 
@@ -103,9 +126,13 @@ public class UserDBManager extends DBManager<User> {
 		return userId;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.skybox.dbmanager.DBManager#updateItem(java.lang.Object)
+	 * 
+	 * Modify an existing user in the Users table
+	 */
 	@Override
 	public boolean updateItem(User entry) {
-		// Modify an existing user in the Users table
 		PreparedStatement ps = null;
 		boolean success = false;
 		
@@ -126,9 +153,13 @@ public class UserDBManager extends DBManager<User> {
 		return success;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.skybox.dbmanager.DBManager#deleteItem(int)
+	 * 
+	 * Delete a user from the Users table
+	 */
 	@Override
 	public boolean deleteItem(int id) {
-		// Delete a user from the Users table
 		PreparedStatement ps = null;
 		boolean success = false;
 		
