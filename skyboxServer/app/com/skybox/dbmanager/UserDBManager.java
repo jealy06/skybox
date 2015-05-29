@@ -30,11 +30,7 @@ public class UserDBManager extends DBManager<User> {
 			rs = ps.executeQuery();
 			
 			while (rs.next()) {
-				int userId = rs.getInt("userId");
-				String userName = rs.getString("userName");
-				String password = rs.getString("password");
-				
-				User newUser = new User(userId, userName, password);
+				User newUser = parseUser(rs);
 				userList.add(newUser);
 			}
 		} catch (SQLException e) {
@@ -61,15 +57,21 @@ public class UserDBManager extends DBManager<User> {
 			
 			// There is always a single entry
 			if (rs.next()) {
-				int userId = rs.getInt("userId");
-				String userName = rs.getString("userName");
-				String password = rs.getString("password");
-				usr = new User(userId, userName, password);
+				usr = parseUser(rs);
 			}
 		} catch (SQLException e) {
 			System.out.println("Unable to retrieve the target user...");
 			e.printStackTrace();
 		}
+		
+		return usr;
+	}
+	
+	private User parseUser(ResultSet rs) throws SQLException {
+		int userId = rs.getInt("userId");
+		String userName = rs.getString("userName");
+		String password = rs.getString("password");
+		User usr = new User(userId, userName, password);
 		
 		return usr;
 	}

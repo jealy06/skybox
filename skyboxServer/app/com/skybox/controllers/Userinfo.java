@@ -39,10 +39,8 @@ public class Userinfo extends Controller {
 		
 		if (usr == null) {
 			return notFound(Json.toJson("Oops, no matched user"));
-		} else {
-			return ok(Json.toJson(usr));
 		}
-		
+		return ok(Json.toJson(usr));
 	}
 
 	@BodyParser.Of(BodyParser.Json.class)
@@ -60,11 +58,9 @@ public class Userinfo extends Controller {
 		
 		if (userId != 0) {
 			return created(Json.toJson("http://localhost:9000/users/" + userId));
-		} else {
-			// Not sure about the status code here, should be revised later.
-			return badRequest(Json.toJson("User creation failed"));
 		}
-		
+		// Not sure about the status code here, should be revised later.
+		return badRequest(Json.toJson("User creation failed"));
 	}
 
 	@BodyParser.Of(BodyParser.Json.class)
@@ -91,10 +87,9 @@ public class Userinfo extends Controller {
 		
 		if (success) {
 			return noContent();
-		} else {
-			// Not sure about the status code here, should be revised later.
-			return badRequest(Json.toJson("User update failed"));
 		}
+		// Not sure about the status code here, should be revised later.
+		return badRequest(Json.toJson("User update failed"));
 	}
 	
 	private static User parseUser(int id, JsonNode json) {
@@ -132,9 +127,8 @@ public class Userinfo extends Controller {
 		
 		if (success) {
 			return noContent();
-		} else {
-			return badRequest(Json.toJson("User deletion failed"));
 		}
-		
+		// Not sure about the status code here, should be revised later.
+		return badRequest(Json.toJson("User deletion failed"));
 	}
 }

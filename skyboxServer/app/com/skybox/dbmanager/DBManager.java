@@ -59,9 +59,8 @@ public abstract class DBManager<O> {
 	
 	public void closeConnection() {
 		try {
-			if (conn != null) {
+			if (conn != null)
 				conn.close();
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

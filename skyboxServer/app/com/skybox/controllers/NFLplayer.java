@@ -40,10 +40,8 @@ public class NFLplayer extends Controller {
 		
 		if (np == null) {
 			return notFound(Json.toJson("Oops, no matched player"));
-		} else {
-			return ok(gson.toJson(np));
 		}
-		
+		return ok(gson.toJson(np));
 	}
 	
 	@BodyParser.Of(BodyParser.Json.class)
@@ -61,11 +59,9 @@ public class NFLplayer extends Controller {
 		
 		if (rank != 0) {
 			return created(Json.toJson("http://localhost:9000/nflstats/" + rank));
-		} else {
-			// Not sure about the status code here, should be revised later.
-			return badRequest(Json.toJson("NFL player stats insertion failed"));
 		}
-		
+		// Not sure about the status code here, should be revised later.
+		return badRequest(Json.toJson("NFL player stats insertion failed"));	
 	}
 	
 	@BodyParser.Of(BodyParser.Json.class)
@@ -95,10 +91,9 @@ public class NFLplayer extends Controller {
 		
 		if (success) {
 			return noContent();
-		} else {
-			// Not sure about the status code here, should be revised later.
-			return badRequest(Json.toJson("NFL player stat update failed"));
 		}
+		// Not sure about the status code here, should be revised later.
+		return badRequest(Json.toJson("NFL player stat update failed"));
 	}
 	
 	
@@ -149,9 +144,8 @@ public class NFLplayer extends Controller {
 		
 		if (success) {
 			return noContent();
-		} else {
-			return badRequest(Json.toJson("User deletion failed"));
 		}
-		
+		// Not sure about the status code here, should be revised later.
+		return badRequest(Json.toJson("User deletion failed"));
 	}
 }
