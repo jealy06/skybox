@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.google.gson.Gson;
 import com.skybox.dbmanager.NFLplayerstatsDBManager;
 import com.skybox.model.NFLplayerstats;
 
@@ -18,18 +19,20 @@ public class NFLplayer extends Controller {
 	public static Result getList() {
 		NFLplayerstatsDBManager npdbm = new NFLplayerstatsDBManager();
 		List<NFLplayerstats> playerList = new ArrayList<NFLplayerstats>();
+		Gson gson = new Gson(); 
 		
 		npdbm.connect();
 		playerList = npdbm.getList();
 		npdbm.closeConnection();
 		
-		return ok(Json.toJson(playerList));
+		return ok(gson.toJson(playerList));
 	}
 
 	// Retrieving single NFLplayerstats from the Database
 	public static Result getItem(int id) {
 		NFLplayerstatsDBManager npdbm = new NFLplayerstatsDBManager();
 		NFLplayerstats np = null;
+		Gson gson = new Gson(); 
 		
 		npdbm.connect();
 		np = npdbm.getItem(id);
@@ -38,7 +41,7 @@ public class NFLplayer extends Controller {
 		if (np == null) {
 			return notFound(Json.toJson("Oops, no matched player"));
 		} else {
-			return ok(Json.toJson(np));
+			return ok(gson.toJson(np));
 		}
 		
 	}
