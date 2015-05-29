@@ -13,5 +13,4 @@ libraryDependencies ++= Seq(
   javaWs
 )
 
-PlayKeys.playWatchService := play.sbtplugin.run.PlayWatchService.sbt(pollInterval.value)
 fork in run := true
