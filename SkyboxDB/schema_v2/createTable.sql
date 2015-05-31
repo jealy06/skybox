@@ -37,14 +37,29 @@ CREATE TABLE Photos (
 );
 
 /*
- * Stores the player who participate the particular league
+ * Stores the player who participate the particular league that is currently running
  */
-CREATE TABLE League (
+CREATE TABLE LeagueCurr (
+    user_id         BIGINT UNSIGNED NOT NULL,
     league_id       VARCHAR(255) NOT NULL,
     league_name     VARCHAR(50) NOT NULL,
     league_password VARCHAR(50) NOT NULL,
     league_motto    VARCHAR(255)
-    PRIMARY KEY (league_id)
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    PRIMARY KEY (user_id, league_id)
+);
+
+/*
+ * Stores the player who participate the particular league that has already finished
+ */
+CREATE TABLE LeaguePast (
+    user_id         BIGINT UNSIGNED NOT NULL,
+    league_id       VARCHAR(255) NOT NULL,
+    league_name     VARCHAR(50) NOT NULL,
+    league_password VARCHAR(50) NOT NULL,
+    league_motto    VARCHAR(255)
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    PRIMARY KEY (user_id, league_id)
 );
 
 /* 
@@ -67,8 +82,3 @@ CREATE TABLE NFLplayerStat (
     YDS_G           INT NOT NULL,
     PRIMARY KEY (rank)
 );
-
-/*
- * TODO:
- * 1. How to store the league each user is currently in and joined in the past.
- */
