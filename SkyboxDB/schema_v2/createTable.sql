@@ -16,7 +16,7 @@ CREATE TABLE Users (
     create_date                     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
      -- this field autoinitializes to current time and auto update the time stamp
     last_update                     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-                                    ON UPDATE CURRENT_TIMESTAMP
+                                    ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id)
 );
 
@@ -44,7 +44,7 @@ CREATE TABLE LeagueCurr (
     league_id       VARCHAR(255) NOT NULL,
     league_name     VARCHAR(50) NOT NULL,
     league_password VARCHAR(50) NOT NULL,
-    league_motto    VARCHAR(255)
+    league_motto    VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES Users(user_id),
     PRIMARY KEY (user_id, league_id)
 );
@@ -57,7 +57,7 @@ CREATE TABLE LeaguePast (
     league_id       VARCHAR(255) NOT NULL,
     league_name     VARCHAR(50) NOT NULL,
     league_password VARCHAR(50) NOT NULL,
-    league_motto    VARCHAR(255)
+    league_motto    VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES Users(user_id),
     PRIMARY KEY (user_id, league_id)
 );
