@@ -34,15 +34,31 @@
 
 	<!-- For testing, use inline CSS for now. Once this is finalized put it in separate file -->
 	<style>
-		.col-md-4 {
-			text-align: center;
-		}
-		footer {
-			/*
-			background-color: #AAA;
+    body {
+        padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    }
 
-			*/
-		}
+    .img-center {
+      margin: 0 auto;
+    }
+
+    footer {
+        margin: 50px 0;
+   }
+   .hello {
+    float: right;
+    color: White;
+   }
+   .row_about {
+      margin-left: -15px;
+      clear: both;
+      width: 100%;
+    }
+  .about_picture {
+    float: left;
+    margin-right: 2em;
+  }
+
 	</style>
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -54,8 +70,124 @@
 
 
   <body>
+ <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">SkyBox</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+                    <p class='hello'>Hello Jarret</p>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
+    <!-- Page Content -->
+    <div class="container">
+        <!-- Introduction Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">What is SkyBox?
+                    <!-- <small>SkyBox</small> -->
+                </h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, explicabo dolores ipsam aliquam inventore corrupti eveniet quisquam quod totam laudantium repudiandae obcaecati ea consectetur debitis velit facere nisi expedita vel?</p>
+            </div>
+        </div>
+
+        <!-- Team Members Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Who are we?</h2>
+            </div>
+        </div>
+
+
+        <!-- Bios start here -->
+        <div class="row_about">
+            <div class="col-lg-12 col-sm-12 text-center" style="margin-bottom: 2em">
+              <div class="about_picture">
+                <img class="img-circle img-responsive img-center" src="http://placehold.it/220x220" alt="">
+                <h3>Jarret Early
+                    <br ><small>Founder</small>
+                </h3>
+              </div>
+                  <p align="left">What does this team member to? Spot for social links. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, explicabo dolores ipsam aliquam inventore corrupti eveniet quisquam quod totam laudantium repudiandae obcaecati ea consectetur debitis velit facere nisi expedita vel? </p>
+            </div>
+        </div>
+
+        <div class="row_about">
+            <div class="col-lg-12 col-sm-12 text-center" style="margin-bottom: 2em">
+              <div class="about_picture">
+                <img class="img-circle img-responsive img-center" src="http://placehold.it/220x220" alt="">
+                <h3>Scott Friedman
+                    <br ><small>Founder</small>
+                </h3>
+              </div>
+                  <p align="left">What does this team member to? Spot for social links. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, explicabo dolores ipsam aliquam inventore corrupti eveniet quisquam quod totam laudantium repudiandae obcaecati ea consectetur debitis velit facere nisi expedita vel? </p>
+            </div>
+        </div>
+
+        <div class="row_about">
+            <div class="col-lg-12 col-sm-12 text-center" style="margin-bottom: 2em">
+              <div class="about_picture">
+                <img class="img-circle img-responsive img-center" src="http://placehold.it/220x220" alt="">
+                <h3>Jasper Wu
+                    <br ><small>COO</small>
+                </h3>
+              </div>
+                  <p align="left">What does this team member to? Spot for social links. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, explicabo dolores ipsam aliquam inventore corrupti eveniet quisquam quod totam laudantium repudiandae obcaecati ea consectetur debitis velit facere nisi expedita vel? </p>
+            </div>
+        </div>
+
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; SkyBox 2015</p>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </footer>
   	
+
+      <script src="https://ajax.goog leapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <!-- Google Analytics Script -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-64655894-1', 'auto');
+      ga('send', 'pageview');
+    </script> 
 
   </body>
 
